@@ -95,7 +95,7 @@ Mode                 LastWriteTime         Length Name
 ```
 
 ## What skill shoud I have to use it?
-- Simple Python skills. (Just modify the model_s)
+- Simple Python skills. (Just modify model_sequence.)
 - Senior Python environment install skills. (See the next section.)
 
 ## What is need to prepare?
@@ -104,7 +104,7 @@ Mode                 LastWriteTime         Length Name
 - Numpy and librosa are not matched in one place. Librosa still use `np.float` in utils.py. Please change it to `float` manually.
 - ffmpeg.exe and ffprobe.exe in environment PATH or the same folder with the python file you run.
 
-## 原版UVR5参数说明
+## 原版UVR5参数说明（与本项目无关，单纯放着）
 - segment size：选择分段大小以平衡速度、资源使用和质量。较小的尺寸消耗较少的资源。更大的规模消耗更多的资源，但可能会提供更好的结果。默认大小为256。质量可以根据您的选择而变化。
 - overlap：此选项控制预测窗口之间的重叠量。更高的值可以提供更好的结果，但会导致更长的处理时间。对于非MDX23C型号：您可以在0.001-0.99之间进行选择。
 - window size：选择窗口大小以平衡质量和速度：1024-快速但质量较差。512-中等速度和质量。320-需要更长的时间，但可能提供更好的质量。
