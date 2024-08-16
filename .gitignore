@@ -1,0 +1,6 @@
+.venv/
+output/
+*.onnx
+*.pth
+*.ckpt
+__pycache__/
