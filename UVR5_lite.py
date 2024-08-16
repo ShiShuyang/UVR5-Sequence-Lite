@@ -83,7 +83,7 @@ def main():
     func('UVR-DeNoise.pth', ['output/小幸运_DeEcho_main.wav'], ['小幸运'], suffix1='DeNoise_bg', suffix2='DeNoise_main')
 
 def main_pipe():
-    model_sequence= [('bs_roformer_ep_317_sdr_12.9755.ckpt', 'vocals', 'instrumental', None),
+    model_sequence = [('bs_roformer_ep_317_sdr_12.9755.ckpt', 'vocals', 'instrumental', None),
                      ('5_HP-Karaoke-UVR.pth', 'Karaoke_bg', 'Karaoke_main', 'vocals'),
                      ('UVR-De-Echo-Normal.pth', 'DeEcho_main', 'DeEcho_bg', 'Karaoke_main'),
                      ('UVR-DeNoise.pth', 'DeNoise_bg', 'DeNoise_main', 'DeEcho_main')]                  
