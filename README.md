@@ -26,10 +26,10 @@ Taking separating music to clean voice as an example, the following 4 step is re
 1. BS-Roformer-Viperx-1297
 2. 5_HP-Karaoke-UVR
 3. UVR-De-Echo
-4. DeNoise(not necessary but just as an example)
+4. DeNoise (not necessary but just as an example)
 
 You can use the following way to run.
-```
+```Python3
 model_sequence = [('bs_roformer_ep_317_sdr_12.9755.ckpt', 'vocals', 'instrumental', None),
                     ('5_HP-Karaoke-UVR.pth', 'Karaoke_bg', 'Karaoke_main', 'vocals'),
                     ('UVR-De-Echo-Normal.pth', 'DeEcho_main', 'DeEcho_bg', 'Karaoke_main'),
@@ -69,5 +69,6 @@ Many 1_1_1 or 2_2_2 and () are displayed. And, it does not support batch operati
 - Senior Python environment install skills. (See the next section.)
 
 ## What is need to prepare?
-fp32 networks shown in 
-
+- fp32 networks shown in the first section. fp16 models maybe works but not tested. 
+- A AVIDIA GPU with CUDA avaliable.
+- Numpy and librosa are not matched in one place. Librosa still use `np.float` in utils.py. Please change it to `float` manually.
