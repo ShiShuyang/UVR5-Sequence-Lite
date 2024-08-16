@@ -46,7 +46,7 @@ main_pipe()
 ```
 Every line in the model_sequence means the model name, the first separated file suffix, the second separated file suffix, and the input sound file suffix from last step.
 
-Note that the first output file can either be vocals or be back background, which depends on the model. 
+Note that the first output file can either be vocals or be background, which depends on the model. 
 
 ## Why to write this?
 
