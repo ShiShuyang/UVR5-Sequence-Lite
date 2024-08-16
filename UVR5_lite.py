@@ -33,12 +33,14 @@ class PipeLine:
     def generate_namelist(self):
         return [os.path.basename(filename).rsplit('.', 1)[0] for filename in self.soundfiles]
     
-    def run(self):
+    def run(self, delete_last_step = True):
         for modelname, suffix0, suffix1, previous_suffix in self.models:
             print(modelname)
             if previous_suffix is None: filelist = self.soundfiles
             else: filelist = [os.path.join(self.ouput_path, f'{sn}_{previous_suffix}.wav') for sn in self.soundnames]
             func(modelname, filelist, self.soundnames, self.ouput_path, self.ouput_path, suffix0, suffix1)
+            if delete_last_step and previous_suffix:
+                for filename in filelist: os.remove(filename)
 
         if torch.cuda.is_available(): torch.cuda.empty_cache()
 
@@ -50,12 +52,12 @@ class PipeLine:
             for modelname, suffix0, suffix1, previous_suffix in self.models:
                 for suffix in (suffix0, suffix1):
                     path = f'{self.ouput_path}/{soundname}_{suffix}'
-                    os.system(f'ffmpeg -i {path}.wav -vn {path}.mp3 -q:a 2 -y')
-                    if delete_wav: os.remove(path+'.wav')
-            
+                    if os.path.isfile(path+'.wav'):
+                        os.system(f'ffmpeg -i "{path}.wav" -vn "{path}.mp3" -q:a 2 -y')
+                        if delete_wav: os.remove(path+'.wav')
 
 if __name__ == '__main__': 
-    func('bs_roformer_ep_317_sdr_12.9755.ckpt', ['../resource/小幸运.mp3'], ['小幸运'])
-    func('5_HP-Karaoke-UVR.pth', ['output/小幸运_vocals.wav'], ['小幸运'], suffix1='Karaoke_bg', suffix2='Karaoke_main')
-    func('UVR-De-Echo-Normal.pth', ['output/小幸运_Karaoke_main.wav'], ['小幸运'], suffix1='DeEcho_main', suffix2='DeEcho_bg')
-    func('UVR-DeNoise.pth', ['output/小幸运_DeEcho_main.wav'], ['小幸运'], suffix1='DeNoise_bg', suffix2='DeNoise_main')
+    func('bs_roformer_ep_317_sdr_12.9755.ckpt', ['../resource/小幸运.mp3'], ['小幸运'], 'output_folder', 'output_folder')
+    func('5_HP-Karaoke-UVR.pth', ['output_folder/小幸运_vocals.wav'], ['小幸运'], 'output_folder', 'output_folder', suffix1='Karaoke_bg', suffix2='Karaoke_main')
+    func('UVR-De-Echo-Normal.pth', ['output_folder/小幸运_Karaoke_main.wav'], ['小幸运'], 'output_folder', 'output_folder', suffix1='DeEcho_main', suffix2='DeEcho_bg')
+    func('UVR-DeNoise.pth', ['output_folder/小幸运_DeEcho_main.wav'], ['小幸运'], 'output_folder', 'output_folder', suffix1='DeNoise_bg', suffix2='DeNoise_main')

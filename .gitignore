@@ -1,5 +1,6 @@
 .venv/
 output/
+output_folder/
 *.onnx
 *.pth
 *.ckpt

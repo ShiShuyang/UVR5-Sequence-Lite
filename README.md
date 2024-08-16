@@ -22,7 +22,7 @@ model_names = ['1_HP-UVR.pth',
 ```
 
 ## How to use?
-Taking separating music to clean voice as an example, the following 4 step is recommand:
+Taking separating music to clean voice as an example, the following 4 step is recommanded:
 1. BS-Roformer-Viperx-1297
 2. 5_HP-Karaoke-UVR
 3. UVR-De-Echo
@@ -76,22 +76,21 @@ With this tool, the results will show in a better manner.
 ```
 Mode                 LastWriteTime         Length Name
 ----                 -------------         ------ ----
--a----         2024/8/16     10:50        4249226 小幸运_DeEcho_bg.mp3
--a----         2024/8/16     10:50        4249226 小幸运_DeEcho_main.mp3
--a----         2024/8/16     10:50        4249226 小幸运_DeNoise_bg.mp3
--a----         2024/8/16     10:50        4249226 小幸运_DeNoise_main.mp3
--a----         2024/8/16     10:50        4249644 小幸运_instrumental.mp3
--a----         2024/8/16     10:50        4249226 小幸运_Karaoke_bg.mp3
--a----         2024/8/16     10:50        4249226 小幸运_Karaoke_main.mp3
--a----         2024/8/16     10:50        4249644 小幸运_vocals.mp3
--a----         2024/8/16     10:50        3811204 魔鬼中的天使_DeEcho_bg.mp3
--a----         2024/8/16     10:50        3811204 魔鬼中的天使_DeEcho_main.mp3
--a----         2024/8/16     10:50        3811204 魔鬼中的天使_DeNoise_bg.mp3
--a----         2024/8/16     10:50        3811204 魔鬼中的天使_DeNoise_main.mp3
--a----         2024/8/16     10:50        3811204 魔鬼中的天使_instrumental.mp3
--a----         2024/8/16     10:50        3811204 魔鬼中的天使_Karaoke_bg.mp3
--a----         2024/8/16     10:50        3811204 魔鬼中的天使_Karaoke_main.mp3
--a----         2024/8/16     10:50        3811204 魔鬼中的天使_vocals.mp3
+-a----         2024/8/16     16:17        4229999 fly away_1_instrumental.mp3
+-a----         2024/8/16     16:17        4229582 fly away_2_Karaoke_bg.mp3
+-a----         2024/8/16     16:18        4229582 fly away_3_DeEcho_bg.mp3
+-a----         2024/8/16     16:18        4229582 fly away_4_DeNoise_bg.mp3
+-a----         2024/8/16     16:18        4229582 fly away_4_DeNoise_main.mp3
+-a----         2024/8/16     16:17        4249644 小幸运_1_instrumental.mp3
+-a----         2024/8/16     16:17        4249226 小幸运_2_Karaoke_bg.mp3
+-a----         2024/8/16     16:17        4249226 小幸运_3_DeEcho_bg.mp3
+-a----         2024/8/16     16:17        4249226 小幸运_4_DeNoise_bg.mp3
+-a----         2024/8/16     16:17        4249226 小幸运_4_DeNoise_main.mp3
+-a----         2024/8/16     16:17        3811204 魔鬼中的天使_1_instrumental.mp3
+-a----         2024/8/16     16:17        3811204 魔鬼中的天使_2_Karaoke_bg.mp3
+-a----         2024/8/16     16:17        3811204 魔鬼中的天使_3_DeEcho_bg.mp3
+-a----         2024/8/16     16:17        3811204 魔鬼中的天使_4_DeNoise_bg.mp3
+-a----         2024/8/16     16:17        3811204 魔鬼中的天使_4_DeNoise_main.mp3
 ```
 
 ## What skill shoud I have to use it?
@@ -99,9 +98,9 @@ Mode                 LastWriteTime         Length Name
 - Senior Python environment install skills. (See the next section.)
 
 ## What is need to prepare?
-- fp32 networks shown in the first section and put them in the models folder. fp16 models may not be works but not tested. 
+- fp32 networks shown in the first section and put them in the models folder. fp16 models may not works but not tested. 
 - A NVIDIA GPU with CUDA avaliable.
-- Numpy and librosa are not matched in one place. Librosa still use `np.float` in utils.py. Please change it to `float` manually.
+- Numpy and librosa are not matched in one place. Librosa still use `np.float` in utils.py, which is not allowed in latest numpy versions. Please change it to `float` manually.
 - ffmpeg.exe and ffprobe.exe in environment PATH or the same folder with the python file you run.
 
 ## 原版UVR5参数说明（与本项目无关，单纯放着）
