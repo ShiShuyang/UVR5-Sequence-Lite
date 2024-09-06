@@ -7,11 +7,11 @@ import librosa
 import numpy as np
 import soundfile as sf
 import torch
-from lib.lib_v5 import nets_61968KB as Nets
-from lib.lib_v5 import spec_utils
-from lib.lib_v5.model_param_init import ModelParameters
-from lib.lib_v5.nets_new import CascadedNet
-from lib.utils import inference
+from .lib.lib_v5 import nets_61968KB as Nets
+from .lib.lib_v5 import spec_utils
+from .lib.lib_v5.model_param_init import ModelParameters
+from .lib.lib_v5.nets_new import CascadedNet
+from .lib.utils import inference
 
 
 class AudioPre:

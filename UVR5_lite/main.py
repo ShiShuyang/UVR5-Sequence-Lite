@@ -1,8 +1,8 @@
 import ffmpeg, os
 import torch
 #from mdxnet import MDXNetDereverb
-from vr import AudioPre, AudioPreDeEcho
-from bsroformer import BsRoformer_Loader
+from .vr import AudioPre, AudioPreDeEcho
+from .bsroformer import BsRoformer_Loader
 
 def func(model_name, paths: list[str], sound_names: list[str] , root1='output', root2='output', suffix1='vocals', suffix2='instrumental'):
     assert len(paths) == len(sound_names)
@@ -15,7 +15,7 @@ def func(model_name, paths: list[str], sound_names: list[str] , root1='output', 
     elif 'HP' in model_name:
         pre_fun = AudioPre(agg, model_path, device='cuda', is_half=False)
     for path, sound_name in zip(paths, sound_names):
-        print(sound_name)
+        print(sound_name, path)
         info = ffmpeg.probe(path, cmd="ffprobe")
         if not (info["streams"][0]["channels"] == 2 and info["streams"][0]["sample_rate"] == "44100"): 
             tmp_path = "%s/%s.reformatted.wav" % (os.path.join(os.environ["TEMP"]), os.path.basename(path))
@@ -55,9 +55,3 @@ class PipeLine:
                     if os.path.isfile(path+'.wav'):
                         os.system(f'ffmpeg -i "{path}.wav" -vn "{path}.mp3" -q:a 2 -y')
                         if delete_wav: os.remove(path+'.wav')
-
-if __name__ == '__main__': 
-    func('bs_roformer_ep_317_sdr_12.9755.ckpt', ['../resource/小幸运.mp3'], ['小幸运'], 'output_folder', 'output_folder')
-    func('5_HP-Karaoke-UVR.pth', ['output_folder/小幸运_vocals.wav'], ['小幸运'], 'output_folder', 'output_folder', suffix1='Karaoke_bg', suffix2='Karaoke_main')
-    func('UVR-De-Echo-Normal.pth', ['output_folder/小幸运_Karaoke_main.wav'], ['小幸运'], 'output_folder', 'output_folder', suffix1='DeEcho_main', suffix2='DeEcho_bg')
-    func('UVR-DeNoise.pth', ['output_folder/小幸运_DeEcho_main.wav'], ['小幸运'], 'output_folder', 'output_folder', suffix1='DeNoise_bg', suffix2='DeNoise_main')
