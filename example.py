@@ -17,6 +17,9 @@ def main_func():
     UVR5_lite.func('UVR-DeNoise.pth', ['output_folder/小幸运_DeEcho_main.wav'], ['小幸运'], 'output_folder', 'output_folder', suffix1='DeNoise_bg', suffix2='DeNoise_main')
 
 def main_pipe():
+    '''
+    Recommand
+    '''
     model_sequence = [('bs_roformer_ep_317_sdr_12.9755.ckpt', '1_vocals', '1_instrumental', None),
                      ('5_HP-Karaoke-UVR.pth', '2_Karaoke_bg', '2_Karaoke_main', '1_vocals'),
                      ('UVR-De-Echo-Normal.pth', '3_DeEcho_main', '3_DeEcho_bg', '2_Karaoke_main'),
@@ -27,4 +30,4 @@ def main_pipe():
     pipe.run(delete_last_step=True)
     pipe.all2mp3(delete_wav=True) #Not recommand to call this function if ouput sounds are used to train model.
 
-main_func()
+main_pipe()

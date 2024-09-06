@@ -5,3 +5,4 @@ output_folder/
 *.pth
 *.ckpt
 __pycache__/
+mywork.py
